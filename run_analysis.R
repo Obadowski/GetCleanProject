@@ -5,6 +5,10 @@
 #If they are missing, you should set your directory to base directory with all input data
 
 run_analysis <- function(){
+    #Loading the libraries necessary to run this code
+    library(data.table)
+    library(plyr)
+    library(dplyr)
     
     #1st - Get the training set and test set
     tab_train <- get_data("train")
@@ -33,7 +37,7 @@ run_analysis <- function(){
     Averages <- ddply(tabfinal, .(Subject, Activity), numcolwise(mean))
     
     #6th and last step - You get your data cleaned and the averages of means and standard deviations
-    run_analysis <- list(tabfinal, Averages)
+    list(tidy_table = tabfinal, Averages)
     
     #7th - Thanks a lot for your patience in reading all this code and for grading me!
 }
@@ -44,8 +48,6 @@ run_analysis <- function(){
 #It extract the data from directory type from files "X_type.txt", "y_type.txt" and "subject_type.txt"
 #Important: the function also clear the extras spaces in "X_train.txt" file
 get_data <- function(type = "train"){
-    #I like this library, so it will be loaded =D
-    library(data.table)
     
     #Just ensures that something useful will be read!
     if (type != "train") {
@@ -88,8 +90,6 @@ get_data <- function(type = "train"){
 #Main point of this function is to get only the data concerning to Mean and standard deviation
 #Also provides a file back to user with the labels - not very useful, but quite handy for a quick consultation
 extract <- function(tabfinal){
-    #And naturally, I liked a lot dplyr, so I will load it too for you! :D
-    library(dplyr)
     
     #First open the file
     features <- readLines("features.txt")
