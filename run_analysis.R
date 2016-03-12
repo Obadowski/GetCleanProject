@@ -37,7 +37,7 @@ run_analysis <- function(){
     Averages <- ddply(tabfinal, .(Subject, Activity), numcolwise(mean))
     
     #6th and last step - You get your data cleaned and the averages of means and standard deviations
-    list(tidy_table = tabfinal, Averages)
+    list(tidy_table = tabfinal, Averages = Averages)
     
     #7th - Thanks a lot for your patience in reading all this code and for grading me!
 }
